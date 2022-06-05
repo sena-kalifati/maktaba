@@ -5,11 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
+using System.Data.SqlClient;
 namespace ff
 {
     public partial class Form6 : Form
     {
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-8NJIN7L;Initial Catalog=maktaba;Integrated Security=True");
         public Form6()
         {
             InitializeComponent();
@@ -35,6 +36,53 @@ namespace ff
             this.Hide();
             Form3 main = new Form3();
             main.Show();
+
+        }
+
+        private void Form6_Load(object sender, EventArgs e)
+        {
+        }
+   
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Con.Open();
+            SqlCommand cmd = new SqlCommand("insert into librarianTbl values(" + LibId.Text + ",'" + LibName.Text +"','"+ LibPass.Text+ "','" + LibPhone.Text+"')",Con);
+            cmd.ExecuteNonQuery();
+                MessageBox.Show("librarian added successfully");
+                Con.Close();
+           
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           
+         
+        }
+
+        private void LibId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void LibName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+
+        }
+
+        private void LibrarianDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+       
 
         }
     }
