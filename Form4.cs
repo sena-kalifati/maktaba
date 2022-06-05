@@ -61,7 +61,7 @@ namespace ff
             cmd.ExecuteNonQuery();
             MessageBox.Show("librarian added successfully");
             Con.Close();
-         
+            populate();
         }
 
         private void maskedTextBox2_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
@@ -71,22 +71,37 @@ namespace ff
 
         private void Form4_Load(object sender, EventArgs e)
         {
-          
+            populate();
         }
-        
+        public void populate()
+        {
+            Con.Open();
+            string query = "select * from StudentTbl";
+            SqlDataAdapter da = new SqlDataAdapter(query, Con);
+            SqlCommandBuilder builder = new SqlCommandBuilder(da);
+            var ds = new DataSet();
+            da.Fill(ds);
+            StudenDGV.DataSource = ds.Tables[0];
+
+            Con.Close();
+        }
         private void button3_Click(object sender, EventArgs e)
         {
-          
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-        
+         
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+            StdId.Text = StudenDGV.SelectedRows[0].Cells[0].Value.ToString();
+            StdName.Text = StudenDGV.SelectedRows[0].Cells[1].Value.ToString();
+            StdDep.Text = StudenDGV.SelectedRows[0].Cells[2].Value.ToString();
+            StdSem.Text = StudenDGV.SelectedRows[0].Cells[3].Value.ToString();
+            StdPhone.Text = StudenDGV.SelectedRows[0].Cells[4].Value.ToString();
         }
     }
 }
