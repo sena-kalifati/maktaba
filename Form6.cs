@@ -41,8 +41,21 @@ namespace ff
 
         private void Form6_Load(object sender, EventArgs e)
         {
+            populate();
         }
-   
+        public void populate()
+        {
+            Con.Open();
+            string query = "select * from librarianTbl";
+            SqlDataAdapter da = new SqlDataAdapter(query, Con);
+            SqlCommandBuilder builder = new SqlCommandBuilder(da);
+            var ds = new DataSet();
+            da.Fill(ds);
+            LibrarianDGV.DataSource = ds.Tables[0];
+           
+            Con.Close();
+            populate();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             Con.Open();
@@ -50,13 +63,14 @@ namespace ff
             cmd.ExecuteNonQuery();
                 MessageBox.Show("librarian added successfully");
                 Con.Close();
-           
+            populate();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
            
-         
+            Con.Close();
+            populate();
         }
 
         private void LibId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
@@ -76,13 +90,13 @@ namespace ff
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+         
 
         }
 
         private void LibrarianDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-       
+           
 
         }
     }
