@@ -68,7 +68,12 @@ namespace ff
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
+            Con.Open();
+            string query= "update librarianTbl set LibName='"+LibName.Text+"',Libpass='"+LibPass.Text+"',LibPhone='" + LibPhone.Text+"'where LibId=" + LibId.Text +";";
+            SqlCommand cmd = new SqlCommand(query, Con);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("librarian seccessfully updeted");
+
             Con.Close();
             populate();
         }
@@ -90,13 +95,22 @@ namespace ff
 
         private void button2_Click(object sender, EventArgs e)
         {
-         
+            Con.Open();
+            string query = "delete from librarianTbl where LibId =" + LibId.Text + "";
+            SqlCommand cmd = new SqlCommand(query, Con);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("librarian successfuly deleted");
+            Con.Close();
+
 
         }
 
         private void LibrarianDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+            LibId.Text = LibrarianDGV.SelectedRows[0].Cells[0].Value.ToString();
+            LibName.Text = LibrarianDGV.SelectedRows[0].Cells[1].Value.ToString();
+            LibPass.Text = LibrarianDGV.SelectedRows[0].Cells[2].Value.ToString();
+            LibPhone.Text = LibrarianDGV.SelectedRows[0].Cells[3].Value.ToString();
 
         }
     }
