@@ -87,12 +87,25 @@ namespace ff
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            
+            Con.Open();
+            string query = "update StudentTbl set StdName='" + StdName.Text + "',StdDep='" + StdDep.Text + "',StdSem='" + StdName.Text + "',StdPhone='" + StdPhone.Text + "'where StdId=" + StdId + ";";
+            SqlCommand cmd = new SqlCommand(query, Con);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("librarian seccessfully updeted");
+
+            Con.Close();
+            populate();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-         
+            Con.Open();
+            string query = "delete from StudentTbl where StdId =" + StdId.Text + "";
+            SqlCommand cmd = new SqlCommand(query, Con);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("librarian successfuly deleted");
+            Con.Close();
+            populate();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
