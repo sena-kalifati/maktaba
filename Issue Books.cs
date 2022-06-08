@@ -31,24 +31,38 @@ namespace ff
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Con.Open();
-            SqlCommand cmd = new SqlCommand("insert into IssueTbl values(" + IssueNum.Text + ",'" + StdId.Text + "','" + StdName.Text + "','" + StdDept.Text + "','" + StdPhone.Text + "','" + BookIssued.Text + "','" + IssueDate.Text + "')", Con);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Issue added successfully");
-            Con.Close();
+          
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-         
+            Con.Open();
+            string query = "update IssueTbl set IssueNum='" + IssueNum.Text + ",StdId'" + StdId.Text + "',StdName'" + StdName.Text + "',StdDept'" + StdDept.Text + "',StdPhone'" + StdPhone.Text + "',BookIssued'" + BookIssued.Text + "',IssueDate'" + IssueDate.Text +  ";";
+            SqlCommand cmd = new SqlCommand(query, Con);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("Issue seccessfully updeted");
+
+            Con.Close();
+            populate();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-       
+          
 
         }
-       
+        public void populate()
+        {
+            Con.Open();
+            string query = "select * from StudentTbl";
+            SqlDataAdapter da = new SqlDataAdapter(query, Con);
+            SqlCommandBuilder builder = new SqlCommandBuilder(da);
+            var ds = new DataSet();
+            da.Fill(ds);
+            IssueDGV.DataSource = ds.Tables[0];
+
+            Con.Close();
+        }
 
         private void IssueDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
