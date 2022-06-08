@@ -27,16 +27,18 @@ namespace ff
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Con.Open();
-            SqlCommand cmd = new SqlCommand("insert into BookTbl values(" + BookName.Text + ",'" + Author.Text + "','" + Publisher.Text + "','" + Price.Text + "','" + Qty.Text + "')", Con);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("librarian added successfully");
-            Con.Close();
+         
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-          
+            Con.Open();
+            string query = " update BookTbl set BookName='" + BookName.Text + "',Author='" + Author.Text + "',Publisher='" + Publisher.Text + "',Price='" + Price.Text + "'where Qty=" + Qty + ";";
+            SqlCommand cmd = new SqlCommand(query, Con);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("librarian seccessfully updeted");
+
+            Con.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -46,10 +48,22 @@ namespace ff
 
         private void Form5_Load(object sender, EventArgs e)
         {
-       
+            populate();
 
         }
-       
+        public void populate()
+        {
+            Con.Open();
+            string query = "select * from StudentTbl";
+            SqlDataAdapter da = new SqlDataAdapter(query, Con);
+            SqlCommandBuilder builder = new SqlCommandBuilder(da);
+            var ds = new DataSet();
+            da.Fill(ds);
+            BookDGV.DataSource = ds.Tables[0];
+
+            Con.Close();
+        }
+
         private void maskedTextBox4_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
