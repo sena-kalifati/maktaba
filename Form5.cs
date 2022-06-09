@@ -27,7 +27,11 @@ namespace ff
 
         private void button1_Click(object sender, EventArgs e)
         {
-         
+            Con.Open();
+            SqlCommand cmd = new SqlCommand("insert into BookTbl values(" + BookName.Text + ",'" + Author.Text + "','" + Publisher.Text + "','" + Price.Text + "','" + Qty.Text + "')", Con);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("librarian added successfully");
+            Con.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -38,9 +42,9 @@ namespace ff
             cmd.ExecuteNonQuery();
             MessageBox.Show("librarian seccessfully updeted");
 
-            Con.Close();
+            Con.Close();///mt
         }
-
+        gd
         private void button2_Click(object sender, EventArgs e)
         {
           
