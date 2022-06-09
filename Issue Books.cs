@@ -31,7 +31,11 @@ namespace ff
 
         private void button1_Click(object sender, EventArgs e)
         {
-          
+            Con.Open();
+            SqlCommand cmd = new SqlCommand("insert into IssueTbl values(" + IssueNum.Text + ",'" + StdId.Text + "','" + StdName.Text + "','" + StdDept.Text + "','" + StdPhone.Text + "','" + BookIssued.Text + "','" + IssueDate.Text + "')", Con);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("Issue added successfully");
+            Con.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -48,7 +52,13 @@ namespace ff
 
         private void button2_Click(object sender, EventArgs e)
         {
-          
+            Con.Open();
+            string query = "delete from IssueTbl where StdId =" + StdId.Text + "";
+            SqlCommand cmd = new SqlCommand(query, Con);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("librarian successfuly deleted");
+            Con.Close();
+            populate();
 
         }
         public void populate()
