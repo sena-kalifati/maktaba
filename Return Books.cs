@@ -41,7 +41,7 @@ namespace ff
 
         }
         public void populate()
-        {//
+        {
             Con.Open();
             string query = "select * from StudentTbl";
             SqlDataAdapter da = new SqlDataAdapter(query, Con);
