@@ -31,8 +31,8 @@ namespace ff
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form5));
             this.panel4 = new System.Windows.Forms.Panel();
-            this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.Price = new System.Windows.Forms.MaskedTextBox();
+            this.BookName = new System.Windows.Forms.MaskedTextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -41,11 +41,11 @@ namespace ff
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
+            this.Qty = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox5 = new System.Windows.Forms.MaskedTextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Publisher = new System.Windows.Forms.MaskedTextBox();
+            this.Author = new System.Windows.Forms.MaskedTextBox();
+            this.BookDGV = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -54,7 +54,7 @@ namespace ff
             this.label1 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BookDGV)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -65,8 +65,8 @@ namespace ff
             this.panel4.BackColor = System.Drawing.Color.BurlyWood;
             this.panel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel4.BackgroundImage")));
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Controls.Add(this.maskedTextBox4);
-            this.panel4.Controls.Add(this.maskedTextBox2);
+            this.panel4.Controls.Add(this.Price);
+            this.panel4.Controls.Add(this.BookName);
             this.panel4.Controls.Add(this.button4);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.button3);
@@ -75,34 +75,35 @@ namespace ff
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.button1);
             this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.maskedTextBox3);
+            this.panel4.Controls.Add(this.Qty);
             this.panel4.Controls.Add(this.label7);
-            this.panel4.Controls.Add(this.maskedTextBox1);
-            this.panel4.Controls.Add(this.maskedTextBox5);
+            this.panel4.Controls.Add(this.Publisher);
+            this.panel4.Controls.Add(this.Author);
             this.panel4.Location = new System.Drawing.Point(24, 171);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(636, 538);
             this.panel4.TabIndex = 25;
             // 
-            // maskedTextBox4
+            // Price
             // 
-            this.maskedTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBox4.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.maskedTextBox4.Location = new System.Drawing.Point(139, 208);
-            this.maskedTextBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.maskedTextBox4.Name = "maskedTextBox4";
-            this.maskedTextBox4.Size = new System.Drawing.Size(304, 20);
-            this.maskedTextBox4.TabIndex = 22;
+            this.Price.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Price.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.Price.Location = new System.Drawing.Point(139, 208);
+            this.Price.Margin = new System.Windows.Forms.Padding(4);
+            this.Price.Name = "Price";
+            this.Price.Size = new System.Drawing.Size(304, 20);
+            this.Price.TabIndex = 22;
+            this.Price.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox4_MaskInputRejected);
             // 
-            // maskedTextBox2
+            // BookName
             // 
-            this.maskedTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBox2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.maskedTextBox2.Location = new System.Drawing.Point(139, 40);
-            this.maskedTextBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(304, 20);
-            this.maskedTextBox2.TabIndex = 6;
+            this.BookName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.BookName.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.BookName.Location = new System.Drawing.Point(139, 40);
+            this.BookName.Margin = new System.Windows.Forms.Padding(4);
+            this.BookName.Name = "BookName";
+            this.BookName.Size = new System.Drawing.Size(304, 20);
+            this.BookName.TabIndex = 6;
             // 
             // button4
             // 
@@ -144,6 +145,7 @@ namespace ff
             this.button3.TabIndex = 19;
             this.button3.Text = "Edit";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label4
             // 
@@ -168,8 +170,9 @@ namespace ff
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 41);
             this.button2.TabIndex = 18;
-            this.button2.Text = "Edit";
+            this.button2.Text = "Delete";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label5
             // 
@@ -196,6 +199,7 @@ namespace ff
             this.button1.TabIndex = 17;
             this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label6
             // 
@@ -209,15 +213,16 @@ namespace ff
             this.label6.TabIndex = 9;
             this.label6.Text = "PRICE";
             // 
-            // maskedTextBox3
+            // Qty
             // 
-            this.maskedTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBox3.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.maskedTextBox3.Location = new System.Drawing.Point(139, 262);
-            this.maskedTextBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.maskedTextBox3.Name = "maskedTextBox3";
-            this.maskedTextBox3.Size = new System.Drawing.Size(304, 20);
-            this.maskedTextBox3.TabIndex = 16;
+            this.Qty.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Qty.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.Qty.Location = new System.Drawing.Point(139, 262);
+            this.Qty.Margin = new System.Windows.Forms.Padding(4);
+            this.Qty.Name = "Qty";
+            this.Qty.Size = new System.Drawing.Size(304, 20);
+            this.Qty.TabIndex = 16;
+            this.Qty.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox3_MaskInputRejected);
             // 
             // label7
             // 
@@ -231,36 +236,37 @@ namespace ff
             this.label7.TabIndex = 12;
             this.label7.Text = "QUANTITY";
             // 
-            // maskedTextBox1
+            // Publisher
             // 
-            this.maskedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBox1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.maskedTextBox1.Location = new System.Drawing.Point(139, 146);
-            this.maskedTextBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(304, 20);
-            this.maskedTextBox1.TabIndex = 15;
+            this.Publisher.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Publisher.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.Publisher.Location = new System.Drawing.Point(139, 146);
+            this.Publisher.Margin = new System.Windows.Forms.Padding(4);
+            this.Publisher.Name = "Publisher";
+            this.Publisher.Size = new System.Drawing.Size(304, 20);
+            this.Publisher.TabIndex = 15;
             // 
-            // maskedTextBox5
+            // Author
             // 
-            this.maskedTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBox5.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.maskedTextBox5.Location = new System.Drawing.Point(139, 94);
-            this.maskedTextBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.maskedTextBox5.Name = "maskedTextBox5";
-            this.maskedTextBox5.Size = new System.Drawing.Size(304, 20);
-            this.maskedTextBox5.TabIndex = 14;
+            this.Author.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Author.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.Author.Location = new System.Drawing.Point(139, 94);
+            this.Author.Margin = new System.Windows.Forms.Padding(4);
+            this.Author.Name = "Author";
+            this.Author.Size = new System.Drawing.Size(304, 20);
+            this.Author.TabIndex = 14;
             // 
-            // dataGridView1
+            // BookDGV
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(707, 171);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(697, 554);
-            this.dataGridView1.TabIndex = 24;
+            this.BookDGV.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BookDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.BookDGV.Location = new System.Drawing.Point(707, 171);
+            this.BookDGV.Name = "BookDGV";
+            this.BookDGV.RowHeadersWidth = 51;
+            this.BookDGV.RowTemplate.Height = 29;
+            this.BookDGV.Size = new System.Drawing.Size(697, 554);
+            this.BookDGV.TabIndex = 24;
+            this.BookDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // panel1
             // 
@@ -271,7 +277,7 @@ namespace ff
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1465, 65);
+            this.panel1.Size = new System.Drawing.Size(1470, 65);
             this.panel1.TabIndex = 23;
             // 
             // panel2
@@ -283,7 +289,7 @@ namespace ff
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1465, 66);
+            this.panel2.Size = new System.Drawing.Size(1470, 66);
             this.panel2.TabIndex = 3;
             // 
             // panel3
@@ -294,7 +300,7 @@ namespace ff
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1465, 66);
+            this.panel3.Size = new System.Drawing.Size(1470, 66);
             this.panel3.TabIndex = 4;
             // 
             // label11
@@ -350,17 +356,19 @@ namespace ff
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.BurlyWood;
-            this.ClientSize = new System.Drawing.Size(1465, 827);
+            this.ClientSize = new System.Drawing.Size(1470, 841);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.BookDGV);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form5";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form5";
+            this.Load += new System.EventHandler(this.Form5_Load);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BookDGV)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -375,8 +383,8 @@ namespace ff
         #endregion
 
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox4;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private System.Windows.Forms.MaskedTextBox Price;
+        private System.Windows.Forms.MaskedTextBox BookName;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button3;
@@ -387,9 +395,9 @@ namespace ff
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.MaskedTextBox maskedTextBox3;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox5;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.MaskedTextBox Publisher;
+        private System.Windows.Forms.MaskedTextBox Author;
+        private System.Windows.Forms.DataGridView BookDGV;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -397,5 +405,6 @@ namespace ff
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MaskedTextBox Qty;
     }
 }
