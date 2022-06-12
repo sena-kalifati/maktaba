@@ -10,12 +10,12 @@ namespace ff
 {
     public partial class Form4 : Form
     {
-        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-8NJIN7L;Initial Catalog=maktaba;Integrated Security=True");
+        
         public Form4()
         {
             InitializeComponent();
         }
-
+        SqlConnection Con = new SqlConnection(@"Data Source=DESKTOP-8NJIN7L;Initial Catalog=maktaba;Integrated Security=True");
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -40,7 +40,18 @@ namespace ff
         {
 
         }
+        public void populate()
+        {
+            Con.Open();
+            string query = "select * from StudentTbl ";
+            SqlDataAdapter da = new SqlDataAdapter(query, Con);
+            SqlCommandBuilder builder = new SqlCommandBuilder(da);
+            var ds = new DataSet();
+            da.Fill(ds);
+            StudenDGV.DataSource = ds.Tables[0];
 
+            Con.Close();
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -56,13 +67,22 @@ namespace ff
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Con.Open();
-            SqlCommand cmd = new SqlCommand("insert into StudentTbl values(" + StdId.Text + ",'" + StdName.Text + "','" + StdDep.Text + "','" + StdSem.Text + "','" + StdPhone.Text + "')", Con);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("librarian added successfully");
-            Con.Close();
-            populate();
+            if (StdId.Text == "" || StdName.Text == "" || StdDep.Text == "" || StdSem.Text == "" || StdPhone.Text == "")
+            {
+                MessageBox.Show("Missing Information");
+            }
+            else
+            {
+                Con.Open();
+                SqlCommand cmd = new SqlCommand("insert into StudentTbl values(" + StdId.Text + ",'" + StdName.Text + "','" + StdDep.Text + "'," + StdSem.SelectedItem.ToString() + ",'" + StdPhone.Text + "')", Con);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Student added successfully");
+                Con.Close();
+                populate();
+            
         }
+    }
+        
 
         private void maskedTextBox2_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
@@ -73,39 +93,42 @@ namespace ff
         {
             populate();
         }
-        public void populate()
-        {
-            Con.Open();
-            string query = "select * from StudentTbl";
-            SqlDataAdapter da = new SqlDataAdapter(query, Con);
-            SqlCommandBuilder builder = new SqlCommandBuilder(da);
-            var ds = new DataSet();
-            da.Fill(ds);
-            StudenDGV.DataSource = ds.Tables[0];
-
-            Con.Close();
-        }
+   
         private void button3_Click(object sender, EventArgs e)
         {
-            Con.Open();
-            string query = "update StudentTbl set StdName='" + StdName.Text + "',StdDep='" + StdDep.Text + "',StdSem='" + StdName.Text + "',StdPhone='" + StdPhone.Text + "'where StdId=" + StdId + ";";
+            if (StdId.Text == "" || StdName.Text == "" || StdDep.Text == "" || StdSem.Text == "" || StdPhone.Text == "")
+            {
+                MessageBox.Show("Missing Information");
+            }
+            else
+            {
+                Con.Open();
+            string query = "update StudentTbl set StdName='" + StdName.Text + "',StdDep='" + StdDep.Text + "',StdSem=" + StdSem.SelectedItem.ToString() + ",StdPhone='" + StdPhone.Text + "'where StdId=" + StdId.Text + ";";
             SqlCommand cmd = new SqlCommand(query, Con);
             cmd.ExecuteNonQuery();
-            MessageBox.Show("librarian seccessfully updeted");
+            MessageBox.Show("student seccessfully updeted");
 
             Con.Close();
             populate();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Con.Open();
-            string query = "delete from StudentTbl where StdId =" + StdId.Text + "";
-            SqlCommand cmd = new SqlCommand(query, Con);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("librarian successfuly deleted");
-            Con.Close();
-            populate();
+            if (StdId.Text == "")
+            {
+                MessageBox.Show("Enter The librarian ID");
+            }
+            else
+            {
+                Con.Open();
+                string query = "delete from StudentTbl  where StdId =" + StdId.Text + ";";
+                SqlCommand cmd = new SqlCommand(query, Con);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Student successfuly deleted");
+                Con.Close();
+                populate();
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
