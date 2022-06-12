@@ -52,23 +52,33 @@ namespace ff
             var ds = new DataSet();
             da.Fill(ds);
             LibrarianDGV.DataSource = ds.Tables[0];
-           
+
             Con.Close();
-            populate();
         }
         private void button1_Click(object sender, EventArgs e)
-        {
+        { if (LibId.Text == "" || LibName.Text == "" || LibPass.Text == "" || LibPhone.Text == "")
+            {
+                MessageBox.Show("Missing Information");
+            }
+            else { 
             Con.Open();
             SqlCommand cmd = new SqlCommand("insert into librarianTbl values(" + LibId.Text + ",'" + LibName.Text +"','"+ LibPass.Text+ "','" + LibPhone.Text+"')",Con);
             cmd.ExecuteNonQuery();
                 MessageBox.Show("librarian added successfully");
                 Con.Close();
-            populate();
+                populate();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Con.Open();
+            if (LibId.Text == "" || LibName.Text == "" || LibPass.Text == "" || LibPhone.Text == "")
+            {
+                MessageBox.Show("Missing Information");
+            }
+            else
+            {
+                Con.Open();
             string query= "update librarianTbl set LibName='"+LibName.Text+"',Libpass='"+LibPass.Text+"',LibPhone='" + LibPhone.Text+"'where LibId=" + LibId.Text +";";
             SqlCommand cmd = new SqlCommand(query, Con);
             cmd.ExecuteNonQuery();
@@ -76,6 +86,7 @@ namespace ff
 
             Con.Close();
             populate();
+            }
         }
 
         private void LibId_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
@@ -95,14 +106,20 @@ namespace ff
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Con.Open();
-            string query = "delete from librarianTbl where LibId =" + LibId.Text + "";
+            if (LibId.Text == "" )
+            {
+                MessageBox.Show("Enter The librarian ID");
+            }
+            else
+            {
+                Con.Open();
+            string query = "delete from librarianTbl where LibId =" + LibId.Text + ";";
             SqlCommand cmd = new SqlCommand(query, Con);
             cmd.ExecuteNonQuery();
             MessageBox.Show("librarian successfuly deleted");
             Con.Close();
-
-
+            populate();
+            }
         }
 
         private void LibrarianDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
