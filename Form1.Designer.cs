@@ -63,7 +63,7 @@ namespace ff
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(318, 702);
+            this.panel1.Size = new System.Drawing.Size(287, 702);
             this.panel1.TabIndex = 2;
             // 
             // label4
@@ -140,6 +140,7 @@ namespace ff
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
