@@ -33,12 +33,12 @@ namespace ff
             this.label10 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.IssueDate = new System.Windows.Forms.DateTimePicker();
-            this.StdDept = new System.Windows.Forms.MaskedTextBox();
+            this.StdDep = new System.Windows.Forms.MaskedTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.StdId = new System.Windows.Forms.ComboBox();
+            this.StdCb = new System.Windows.Forms.ComboBox();
             this.IssueNum = new System.Windows.Forms.MaskedTextBox();
-            this.StdPhone = new System.Windows.Forms.ComboBox();
+            this.BookIssued = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -47,7 +47,7 @@ namespace ff
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.BookIssued = new System.Windows.Forms.MaskedTextBox();
+            this.StdPhone = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.StdName = new System.Windows.Forms.MaskedTextBox();
             this.IssueDGV = new System.Windows.Forms.DataGridView();
@@ -82,12 +82,12 @@ namespace ff
             this.panel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel4.BackgroundImage")));
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel4.Controls.Add(this.IssueDate);
-            this.panel4.Controls.Add(this.StdDept);
+            this.panel4.Controls.Add(this.StdDep);
             this.panel4.Controls.Add(this.label8);
             this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.StdId);
+            this.panel4.Controls.Add(this.StdCb);
             this.panel4.Controls.Add(this.IssueNum);
-            this.panel4.Controls.Add(this.StdPhone);
+            this.panel4.Controls.Add(this.BookIssued);
             this.panel4.Controls.Add(this.button4);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.button3);
@@ -96,13 +96,14 @@ namespace ff
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.button1);
             this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.BookIssued);
+            this.panel4.Controls.Add(this.StdPhone);
             this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.StdName);
             this.panel4.Location = new System.Drawing.Point(23, 159);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(636, 538);
             this.panel4.TabIndex = 29;
+            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // IssueDate
             // 
@@ -113,16 +114,16 @@ namespace ff
             this.IssueDate.Size = new System.Drawing.Size(304, 27);
             this.IssueDate.TabIndex = 26;
             // 
-            // StdDept
+            // StdDep
             // 
-            this.StdDept.BackColor = System.Drawing.SystemColors.Info;
-            this.StdDept.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.StdDept.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.StdDept.Location = new System.Drawing.Point(150, 142);
-            this.StdDept.Margin = new System.Windows.Forms.Padding(4);
-            this.StdDept.Name = "StdDept";
-            this.StdDept.Size = new System.Drawing.Size(304, 20);
-            this.StdDept.TabIndex = 25;
+            this.StdDep.BackColor = System.Drawing.SystemColors.Info;
+            this.StdDep.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.StdDep.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.StdDep.Location = new System.Drawing.Point(150, 142);
+            this.StdDep.Margin = new System.Windows.Forms.Padding(4);
+            this.StdDep.Name = "StdDep";
+            this.StdDep.Size = new System.Drawing.Size(304, 20);
+            this.StdDep.TabIndex = 25;
             // 
             // label8
             // 
@@ -149,11 +150,11 @@ namespace ff
             this.label2.TabIndex = 23;
             this.label2.Text = "DATE";
             // 
-            // StdId
+            // StdCb
             // 
-            this.StdId.BackColor = System.Drawing.SystemColors.Info;
-            this.StdId.FormattingEnabled = true;
-            this.StdId.Items.AddRange(new object[] {
+            this.StdCb.BackColor = System.Drawing.SystemColors.Info;
+            this.StdCb.FormattingEnabled = true;
+            this.StdCb.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
@@ -162,10 +163,12 @@ namespace ff
             "6",
             "7",
             "8"});
-            this.StdId.Location = new System.Drawing.Point(150, 50);
-            this.StdId.Name = "StdId";
-            this.StdId.Size = new System.Drawing.Size(304, 28);
-            this.StdId.TabIndex = 22;
+            this.StdCb.Location = new System.Drawing.Point(150, 50);
+            this.StdCb.Name = "StdCb";
+            this.StdCb.Size = new System.Drawing.Size(304, 28);
+            this.StdCb.TabIndex = 22;
+            this.StdCb.SelectedIndexChanged += new System.EventHandler(this.StdCb_SelectedIndexChanged);
+            this.StdCb.SelectionChangeCommitted += new System.EventHandler(this.StdCb_SelectionChangeCommitted);
             // 
             // IssueNum
             // 
@@ -178,11 +181,11 @@ namespace ff
             this.IssueNum.Size = new System.Drawing.Size(304, 20);
             this.IssueNum.TabIndex = 6;
             // 
-            // StdPhone
+            // BookIssued
             // 
-            this.StdPhone.BackColor = System.Drawing.SystemColors.Info;
-            this.StdPhone.FormattingEnabled = true;
-            this.StdPhone.Items.AddRange(new object[] {
+            this.BookIssued.BackColor = System.Drawing.SystemColors.Info;
+            this.BookIssued.FormattingEnabled = true;
+            this.BookIssued.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
@@ -191,10 +194,11 @@ namespace ff
             "6",
             "7",
             "8"});
-            this.StdPhone.Location = new System.Drawing.Point(150, 185);
-            this.StdPhone.Name = "StdPhone";
-            this.StdPhone.Size = new System.Drawing.Size(304, 28);
-            this.StdPhone.TabIndex = 11;
+            this.BookIssued.Location = new System.Drawing.Point(150, 230);
+            this.BookIssued.Name = "BookIssued";
+            this.BookIssued.Size = new System.Drawing.Size(304, 28);
+            this.BookIssued.TabIndex = 11;
+            this.BookIssued.SelectedIndexChanged += new System.EventHandler(this.book_SelectedIndexChanged);
             // 
             // button4
             // 
@@ -203,7 +207,7 @@ namespace ff
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(239, 376);
+            this.button4.Location = new System.Drawing.Point(251, 385);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(94, 41);
             this.button4.TabIndex = 21;
@@ -230,9 +234,9 @@ namespace ff
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(239, 320);
+            this.button3.Location = new System.Drawing.Point(240, 320);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 41);
+            this.button3.Size = new System.Drawing.Size(115, 41);
             this.button3.TabIndex = 19;
             this.button3.Text = "Edit";
             this.button3.UseVisualStyleBackColor = false;
@@ -257,9 +261,9 @@ namespace ff
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(339, 320);
+            this.button2.Location = new System.Drawing.Point(361, 320);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 41);
+            this.button2.Size = new System.Drawing.Size(112, 41);
             this.button2.TabIndex = 18;
             this.button2.Text = "Delete";
             this.button2.UseVisualStyleBackColor = false;
@@ -285,11 +289,11 @@ namespace ff
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(139, 320);
+            this.button1.Location = new System.Drawing.Point(105, 320);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 41);
+            this.button1.Size = new System.Drawing.Size(129, 41);
             this.button1.TabIndex = 17;
-            this.button1.Text = "Add";
+            this.button1.Text = "Issue Book";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -299,23 +303,23 @@ namespace ff
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label6.Location = new System.Drawing.Point(9, 185);
+            this.label6.Location = new System.Drawing.Point(9, 188);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 24);
             this.label6.TabIndex = 9;
             this.label6.Text = "PHONE";
             // 
-            // BookIssued
+            // StdPhone
             // 
-            this.BookIssued.BackColor = System.Drawing.SystemColors.Info;
-            this.BookIssued.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.BookIssued.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.BookIssued.Location = new System.Drawing.Point(150, 234);
-            this.BookIssued.Margin = new System.Windows.Forms.Padding(4);
-            this.BookIssued.Name = "BookIssued";
-            this.BookIssued.Size = new System.Drawing.Size(304, 20);
-            this.BookIssued.TabIndex = 16;
+            this.StdPhone.BackColor = System.Drawing.SystemColors.Info;
+            this.StdPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.StdPhone.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.StdPhone.Location = new System.Drawing.Point(150, 188);
+            this.StdPhone.Margin = new System.Windows.Forms.Padding(4);
+            this.StdPhone.Name = "StdPhone";
+            this.StdPhone.Size = new System.Drawing.Size(304, 20);
+            this.StdPhone.TabIndex = 16;
             // 
             // label7
             // 
@@ -323,7 +327,7 @@ namespace ff
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label7.Location = new System.Drawing.Point(9, 230);
+            this.label7.Location = new System.Drawing.Point(7, 234);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 24);
@@ -458,7 +462,7 @@ namespace ff
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.MaskedTextBox IssueNum;
-        private System.Windows.Forms.ComboBox StdPhone;
+        private System.Windows.Forms.ComboBox BookIssued;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button3;
@@ -467,7 +471,7 @@ namespace ff
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.MaskedTextBox BookIssued;
+        private System.Windows.Forms.MaskedTextBox StdPhone;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.MaskedTextBox StdName;
         private System.Windows.Forms.DataGridView IssueDGV;
@@ -478,9 +482,9 @@ namespace ff
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker IssueDate;
-        private System.Windows.Forms.MaskedTextBox StdDept;
+        private System.Windows.Forms.MaskedTextBox StdDep;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox StdId;
+        private System.Windows.Forms.ComboBox StdCb;
     }
 }
