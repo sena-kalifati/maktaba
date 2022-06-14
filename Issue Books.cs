@@ -33,7 +33,7 @@ namespace ff
         private void FillBook()
         {
             Con.Open();
-            SqlCommand cmd = new SqlCommand("select BookName from BookTbl", Con);
+            SqlCommand cmd = new SqlCommand("select BookName from BookTbl where Qty >"+0+"", Con);
             SqlDataReader rdr;
             rdr = cmd.ExecuteReader();
             DataTable dt = new DataTable();
@@ -60,12 +60,52 @@ namespace ff
             }
             Con.Close();
         }
+        private void UpdateBook()
+        {
+            int Qty,newQty;
+            Con.Open();
+            string query = "select * from BookTbl where BookName='" + BookIssued.SelectedValue.ToString() + "'";
+            SqlCommand cmd = new SqlCommand(query, Con);
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            foreach (DataRow dr in dt.Rows)
+            {
+                Qty = Convert.ToInt32(dr["Qty"].ToString());
+                newQty = Qty - 1;
+                string query1 = "Update BookTbl set Qty=" + newQty + "where BookName='" + BookIssued.SelectedValue.ToString() + "'";
+                SqlCommand cmd1 = new SqlCommand(query1, Con);
+                cmd1.ExecuteNonQuery();
+            
+            }
+            Con.Close();
+        }
+        private void UpdateBookCanceletion()
+        {
+            int Qty, newQty;
+            Con.Open();
+            string query = "select * from BookTbl where BookName='" + BookIssued.SelectedValue.ToString() + "'";
+            SqlCommand cmd = new SqlCommand(query, Con);
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            foreach (DataRow dr in dt.Rows)
+            {
+                Qty = Convert.ToInt32(dr["Qty"].ToString());
+                newQty = Qty +1;
+                string query1 = "Update BookTbl set Qty=" + newQty + "where BookName='" + BookIssued.SelectedValue.ToString() + "'";
+                SqlCommand cmd1 = new SqlCommand(query1, Con);
+                cmd1.ExecuteNonQuery();
 
+            }
+            Con.Close();
+        }
 
         private void Issue_Books_Load(object sender, EventArgs e)
         {
             FillStudent();
             FillBook();
+            populate();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -83,13 +123,14 @@ namespace ff
                 MessageBox.Show("Missing Information");
             }
             else
-            { string date = IssueDate.Value.Day.ToString() + IssueDate.Value.Month.ToString() + IssueDate.Value.Year.ToString() ;
+            { 
 
                 Con.Open();
-                SqlCommand cmd = new SqlCommand("insert into IssueTbl values(" + IssueNum.Text + "," + StdCb.SelectedValue.ToString()+ ",'" + StdName.Text + "','" + StdDep.Text + "','" + StdPhone.Text + "','" + BookIssued.SelectedValue.ToString() + "','" + date + "')", Con);
+                SqlCommand cmd = new SqlCommand("insert into IssueTbl values(" + IssueNum.Text + "," + StdCb.SelectedValue.ToString()+ ",'" + StdName.Text + "','" + StdDep.Text + "','" + StdPhone.Text + "','" + BookIssued.SelectedValue.ToString() + "')", Con);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Book successfully Issued");
                 Con.Close();
+                UpdateBook();
                 populate();
             }
          
@@ -97,31 +138,33 @@ namespace ff
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Con.Open();
-            string query = "update IssueTbl set IssueNum='" + IssueNum.Text + ",StdId'" + StdCb.Text + "',StdName'" + StdName.Text + "',StdDept'" + StdDep.Text + "',StdPhone'" + BookIssued.Text + "',BookIssued'" + StdPhone.Text + "',IssueDate'" + IssueDate.Text +  ";";
-            SqlCommand cmd = new SqlCommand(query, Con);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Issue seccessfully updeted");
-
-            Con.Close();
-            populate();
+          
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Con.Open();
-            string query = "delete from IssueTbl where StdId =" + StdCb.Text + "";
-            SqlCommand cmd = new SqlCommand(query, Con);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("librarian successfuly deleted");
-            Con.Close();
-            populate();
+            if (IssueNum.Text == "")
+            {
+                MessageBox.Show("Enter The IsuueNumber");
+            }
+            else
+            {
+                Con.Open();
+                string query = "delete from IssueTbl where IssueNum =" + IssueNum.Text + "";
+                SqlCommand cmd = new SqlCommand(query, Con);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Issue successfuly canceleed ");
+                Con.Close();
+                UpdateBookCanceletion();
+                populate();
 
+            }
         }
         public void populate()
         {
             Con.Open();
-            string query = "select * from StudentTbl";
+            string query = "select * from IssueTbl";
             SqlDataAdapter da = new SqlDataAdapter(query, Con);
             SqlCommandBuilder builder = new SqlCommandBuilder(da);
             var ds = new DataSet();
@@ -134,12 +177,13 @@ namespace ff
         private void IssueDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             IssueNum.Text = IssueDGV.SelectedRows[0].Cells[0].Value.ToString();
-            StdCb.Text = IssueDGV.SelectedRows[0].Cells[0].Value.ToString();
-            StdName.Text = IssueDGV.SelectedRows[0].Cells[0].Value.ToString();
-            StdDep.Text = IssueDGV.SelectedRows[0].Cells[0].Value.ToString();
-            BookIssued.Text = IssueDGV.SelectedRows[0].Cells[0].Value.ToString();
-            StdPhone.Text = IssueDGV.SelectedRows[0].Cells[0].Value.ToString();
-            IssueDate.Text = IssueDGV.SelectedRows[0].Cells[0].Value.ToString();
+            StdCb.Text = IssueDGV.SelectedRows[0].Cells[1].Value.ToString();
+            StdName.Text = IssueDGV.SelectedRows[0].Cells[2].Value.ToString();
+            StdDep.Text = IssueDGV.SelectedRows[0].Cells[3].Value.ToString();
+            BookIssued.Text = IssueDGV.SelectedRows[0].Cells[4].Value.ToString();
+            StdPhone.Text = IssueDGV.SelectedRows[0].Cells[5].Value.ToString();
+            
+            
 
         
         }
