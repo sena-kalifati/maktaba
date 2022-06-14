@@ -32,16 +32,13 @@ namespace ff
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Issue_Books));
             this.label10 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.IssueDate = new System.Windows.Forms.DateTimePicker();
             this.StdDep = new System.Windows.Forms.MaskedTextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.StdCb = new System.Windows.Forms.ComboBox();
             this.IssueNum = new System.Windows.Forms.MaskedTextBox();
             this.BookIssued = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -81,16 +78,13 @@ namespace ff
             this.panel4.BackColor = System.Drawing.Color.BurlyWood;
             this.panel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel4.BackgroundImage")));
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Controls.Add(this.IssueDate);
             this.panel4.Controls.Add(this.StdDep);
             this.panel4.Controls.Add(this.label8);
-            this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.StdCb);
             this.panel4.Controls.Add(this.IssueNum);
             this.panel4.Controls.Add(this.BookIssued);
             this.panel4.Controls.Add(this.button4);
             this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.button2);
             this.panel4.Controls.Add(this.label5);
@@ -101,18 +95,9 @@ namespace ff
             this.panel4.Controls.Add(this.StdName);
             this.panel4.Location = new System.Drawing.Point(23, 159);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(636, 538);
+            this.panel4.Size = new System.Drawing.Size(540, 538);
             this.panel4.TabIndex = 29;
             this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
-            // 
-            // IssueDate
-            // 
-            this.IssueDate.CalendarForeColor = System.Drawing.Color.Coral;
-            this.IssueDate.CalendarMonthBackground = System.Drawing.Color.ForestGreen;
-            this.IssueDate.Location = new System.Drawing.Point(150, 278);
-            this.IssueDate.Name = "IssueDate";
-            this.IssueDate.Size = new System.Drawing.Size(304, 27);
-            this.IssueDate.TabIndex = 26;
             // 
             // StdDep
             // 
@@ -136,19 +121,6 @@ namespace ff
             this.label8.Size = new System.Drawing.Size(62, 24);
             this.label8.TabIndex = 24;
             this.label8.Text = "NAME";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(9, 278);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 24);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "DATE";
             // 
             // StdCb
             // 
@@ -207,9 +179,9 @@ namespace ff
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(251, 385);
+            this.button4.Location = new System.Drawing.Point(189, 376);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(94, 41);
+            this.button4.Size = new System.Drawing.Size(124, 41);
             this.button4.TabIndex = 21;
             this.button4.Text = "Home";
             this.button4.UseVisualStyleBackColor = false;
@@ -226,21 +198,6 @@ namespace ff
             this.label3.Size = new System.Drawing.Size(52, 24);
             this.label3.TabIndex = 3;
             this.label3.Text = "NUM";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(240, 320);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(115, 41);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "Edit";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label4
             // 
@@ -261,9 +218,9 @@ namespace ff
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(361, 320);
+            this.button2.Location = new System.Drawing.Point(255, 320);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 41);
+            this.button2.Size = new System.Drawing.Size(131, 41);
             this.button2.TabIndex = 18;
             this.button2.Text = "Delete";
             this.button2.UseVisualStyleBackColor = false;
@@ -349,11 +306,11 @@ namespace ff
             // 
             this.IssueDGV.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.IssueDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.IssueDGV.Location = new System.Drawing.Point(722, 159);
+            this.IssueDGV.Location = new System.Drawing.Point(601, 159);
             this.IssueDGV.Name = "IssueDGV";
             this.IssueDGV.RowHeadersWidth = 51;
             this.IssueDGV.RowTemplate.Height = 29;
-            this.IssueDGV.Size = new System.Drawing.Size(697, 554);
+            this.IssueDGV.Size = new System.Drawing.Size(818, 554);
             this.IssueDGV.TabIndex = 28;
             this.IssueDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IssueDGV_CellContentClick);
             // 
@@ -465,7 +422,6 @@ namespace ff
         private System.Windows.Forms.ComboBox BookIssued;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label5;
@@ -481,10 +437,8 @@ namespace ff
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker IssueDate;
         private System.Windows.Forms.MaskedTextBox StdDep;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox StdCb;
     }
 }
