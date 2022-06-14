@@ -63,7 +63,7 @@ namespace ff
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1316, 35);
+            this.panel2.Size = new System.Drawing.Size(1316, 39);
             this.panel2.TabIndex = 1;
             // 
             // panel3
@@ -101,6 +101,7 @@ namespace ff
             this.button7.TabIndex = 1;
             this.button7.Text = "DashBoard";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
@@ -113,6 +114,7 @@ namespace ff
             this.button6.TabIndex = 0;
             this.button6.Text = "AboutUs";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // panel4
             // 
@@ -124,6 +126,7 @@ namespace ff
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1316, 633);
             this.panel4.TabIndex = 4;
+            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint_1);
             // 
             // label1
             // 
